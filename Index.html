@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For My Special Someone</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div id="page1" class="container">
+        <div class="card">
+            <h2>Enter your name to unlock 🔐</h2>
+            <input type="text" id="nameInput" placeholder="Your name here...">
+            <button onclick="checkName()">Unlock</button>
+        </div>
+    </div>
+
+    <div id="page2" class="container hidden">
+        <div class="proposal-card">
+            <div class="hearts-container" id="hearts"></div>
+            <h1>Hey Beautiful! ❤️</h1>
+            <p id="typewriterText"></p>
+            <div class="buttons">
+                <button id="yesBtn" onclick="celebrate()">Yes! 💍</button>
+                <button id="noBtn" onmouseover="moveButton()">No</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
