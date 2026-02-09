@@ -1,33 +1,115 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="gu">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>For My Special Someone</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Happy Chocolate Day!</title>
+    <style>
+        body {
+            background-color: #fdf0d5; /* Light cream */
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+            text-align: center;
+        }
+
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            z-index: 10;
+        }
+
+        h1 {
+            color: #603808; /* Chocolate Brown */
+            font-size: 2.5rem;
+        }
+
+        p {
+            color: #7b4b12;
+            font-size: 1.2rem;
+        }
+
+        .chocolate-emoji {
+            font-size: 80px;
+            margin: 20px 0;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .chocolate-emoji:hover {
+            transform: scale(1.2) rotate(10deg);
+        }
+
+        .btn {
+            background-color: #603808;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 25px;
+            font-size: 1rem;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: background 0.3s;
+        }
+
+        .btn:hover {
+            background-color: #4a2c06;
+        }
+
+        /* Falling Chocolates Animation */
+        .falling-choco {
+            position: absolute;
+            top: -50px;
+            font-size: 24px;
+            animation: fall linear infinite;
+        }
+
+        @keyframes fall {
+            to {
+                transform: translateY(110vh);
+            }
+        }
+    </style>
 </head>
 <body>
 
-    <div id="page1" class="container">
-        <div class="card">
-            <h2>Enter your name to unlock 🔐</h2>
-            <input type="text" id="nameInput" placeholder="Your name here...">
-            <button onclick="checkName()">Unlock</button>
-        </div>
+    <div class="container">
+        <h1>Happy Chocolate Day! 🍫</h1>
+        <p>You are sweeter than any chocolate in the world!</p>
+        <div class="chocolate-emoji" onclick="showLove()">🍫</div>
+        <p id="msg">Aa chocolate tara mate!</p>
+        <button class="btn" onclick="createRain()">Sweet Surprise</button>
     </div>
 
-    <div id="page2" class="container hidden">
-        <div class="proposal-card">
-            <div class="hearts-container" id="hearts"></div>
-            <h1>Hey Beautiful! ❤️</h1>
-            <p id="typewriterText"></p>
-            <div class="buttons">
-                <button id="yesBtn" onclick="celebrate()">Yes! 💍</button>
-                <button id="noBtn" onmouseover="moveButton()">No</button>
-            </div>
-        </div>
-    </div>
+    <script>
+        function showLove() {
+            document.getElementById('msg').innerHTML = "I Love You! ❤️";
+            document.getElementById('msg').style.color = "#d62828";
+            document.getElementById('msg').style.fontWeight = "bold";
+        }
 
-    <script src="script.js"></script>
+        function createRain() {
+            const icons = ['🍫', '🍩', '🍪', '🍬', '🍭', '❤️'];
+            for (let i = 0; i < 30; i++) {
+                setTimeout(() => {
+                    const choco = document.createElement('div');
+                    choco.className = 'falling-choco';
+                    choco.innerHTML = icons[Math.floor(Math.random() * icons.length)];
+                    choco.style.left = Math.random() * 100 + 'vw';
+                    choco.style.animationDuration = (Math.random() * 3 + 2) + 's';
+                    document.body.appendChild(choco);
+                    
+                    setTimeout(() => choco.remove(), 5000);
+                }, i * 100);
+            }
+        }
+    </script>
 </body>
 </html>
