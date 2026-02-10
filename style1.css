@@ -1,0 +1,279 @@
+:root {
+    --bg-black: #050505;
+    --text-white: #FFFFFF;
+    --text-silver: #C0C0C0;
+    --accent-glow: rgba(255, 255, 255, 0.15);
+    --modal-bg: #111111;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Lato', sans-serif;
+    background-color: var(--bg-black);
+    color: var(--text-white);
+    overflow-x: hidden;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.background-effects {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    pointer-events: none;
+    background: radial-gradient(circle at center, #1a1a1a 0%, #000000 100%);
+}
+
+.container {
+    text-align: center;
+    z-index: 1;
+    position: relative;
+    padding: 20px;
+}
+
+.title {
+    font-family: 'Cinzel', serif;
+    font-size: 4.5rem;
+    color: var(--text-white);
+    text-transform: uppercase;
+    letter-spacing: 5px;
+    margin-bottom: 30px;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+    animation: fadeZoomIn 2s ease-out;
+}
+
+.chocolate-container {
+    position: relative;
+    width: 250px;
+    height: 350px;
+    margin: 0 auto 40px;
+    perspective: 1000px;
+}
+
+.floating-choco {
+    width: 100%;
+    height: auto;
+    filter: drop-shadow(0 20px 30px rgba(255, 255, 255, 0.1));
+    animation: float 4s ease-in-out infinite;
+    transform-style: preserve-3d;
+}
+
+.glow {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 300px;
+    height: 400px;
+    background: radial-gradient(ellipse, var(--accent-glow) 0%, rgba(0, 0, 0, 0) 70%);
+    border-radius: 50%;
+    animation: breathe 4s infinite alternate;
+}
+
+.subtitle {
+    font-size: 1.1rem;
+    color: var(--text-silver);
+    margin-bottom: 50px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-weight: 300;
+    opacity: 0;
+    animation: fadeInUp 1.5s ease-out 1s forwards;
+}
+
+.cta-button {
+    padding: 18px 50px;
+    font-size: 1rem;
+    background: transparent;
+    color: var(--text-white);
+    border: 1px solid var(--text-white);
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    cursor: pointer;
+    transition: all 0.4s ease;
+    position: relative;
+    overflow: hidden;
+    font-family: 'Cinzel', serif;
+}
+
+.cta-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: var(--text-white);
+    transition: all 0.4s ease;
+    z-index: -1;
+}
+
+.cta-button:hover {
+    color: var(--bg-black);
+}
+
+.cta-button:hover::before {
+    left: 0;
+}
+
+/* Modal */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.85);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    backdrop-filter: blur(8px);
+    transition: opacity 0.5s ease;
+}
+
+.modal.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.modal-content {
+    background: var(--modal-bg);
+    padding: 60px;
+    border: 1px solid var(--text-silver);
+    text-align: center;
+    max-width: 90%;
+    width: 500px;
+    position: relative;
+    transform: translateY(50px);
+    transition: transform 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+    box-shadow: 0 0 50px rgba(255, 255, 255, 0.05);
+}
+
+.modal:not(.hidden) .modal-content {
+    transform: translateY(0);
+}
+
+.close-btn {
+    position: absolute;
+    top: 20px;
+    right: 25px;
+    font-size: 2rem;
+    cursor: pointer;
+    color: var(--text-silver);
+    transition: color 0.3s;
+}
+
+.close-btn:hover {
+    color: var(--text-white);
+}
+
+.modal-content h2 {
+    font-family: 'Cinzel', serif;
+    color: var(--text-white);
+    font-size: 2rem;
+    margin-bottom: 30px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: 20px;
+}
+
+.modal-content p {
+    color: #cccccc;
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-bottom: 15px;
+}
+
+.heart-icon {
+    font-size: 3rem;
+    margin-top: 30px;
+    animation: heartBeat 2s infinite;
+}
+
+/* Animations */
+@keyframes float {
+
+    0%,
+    100% {
+        transform: translateY(0) rotate(0deg);
+    }
+
+    50% {
+        transform: translateY(-15px) rotate(2deg);
+    }
+}
+
+@keyframes breathe {
+    from {
+        opacity: 0.3;
+        transform: translate(-50%, -50%) scale(0.9);
+    }
+
+    to {
+        opacity: 0.6;
+        transform: translate(-50%, -50%) scale(1.1);
+    }
+}
+
+@keyframes fadeZoomIn {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes heartBeat {
+    0% {
+        transform: scale(1);
+        filter: brightness(100%);
+    }
+
+    50% {
+        transform: scale(1.1);
+        filter: brightness(120%);
+    }
+
+    100% {
+        transform: scale(1);
+        filter: brightness(100%);
+    }
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+    .title {
+        font-size: 2.5rem;
+    }
+
+    .chocolate-container {
+        width: 180px;
+        height: 250px;
+    }
+}
